@@ -14,16 +14,8 @@ namespace Primer_Obligatorio
 
             while (!esnumero)
             {
-                Console.Clear();
-                Console.WriteLine("****************************************** \n");
-                Console.WriteLine("   1 - Ingresar la cantidad de clientes");
-                Console.WriteLine("   2 - Ingresar apuesta");
-                Console.WriteLine("   3 - Ingresar apuesta sorpresa");
-                Console.WriteLine("   4 - Eliminar apuesta");
-                Console.WriteLine("   5 - Listados \n");
-                Console.WriteLine("   6 - Salir");
-                Console.WriteLine("******************************************");
-                Console.Write("Ingrese la opción deseada: ");
+                MostrarPantalla();
+
                 esnumero = Int32.TryParse(Console.ReadLine(), out opcion);
 
                 if (!esnumero)
@@ -53,8 +45,22 @@ namespace Primer_Obligatorio
             }
         }
 
-       
-        
+
+        public static void MostrarPantalla()
+        {
+            Console.Clear();
+            Console.WriteLine("****************************************** \n");
+            Console.WriteLine("   1 - Ingresar la cantidad de clientes");
+            Console.WriteLine("   2 - Ingresar apuesta");
+            Console.WriteLine("   3 - Ingresar apuesta sorpresa");
+            Console.WriteLine("   4 - Eliminar apuesta");
+            Console.WriteLine("   5 - Listados");
+            Console.WriteLine("   6 - Salir\n");
+            Console.WriteLine("******************************************");
+            Console.Write("Ingrese la opción deseada: ");
+        }
+
+
         public static void CantidadClientes()
         {
         }
