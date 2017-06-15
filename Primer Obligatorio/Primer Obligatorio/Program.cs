@@ -8,10 +8,18 @@ namespace Primer_Obligatorio
     class Program
     {
         static void Main(string[] args)
+        {     
+            String[] apostadores = null;
+            MostrarMenu();
+        }
+
+
+
+        public static void MostrarMenu()
         {
+
             int opcion = 0;
             bool esnumero = false;
-            int cantidadclientes = 0;
             while (!esnumero)
             {
                 Console.Clear();
@@ -36,8 +44,8 @@ namespace Primer_Obligatorio
                 switch (opcion)
                 {
                     case 1:
-                        CantidadClientes(ref cantidadclientes);
-                        String[] apostadores = new String[cantidadclientes];
+                        CantidadClientes(apostadores);
+                        
                         MostrarMenu();
                         break;
                     case 2:
@@ -61,21 +69,14 @@ namespace Primer_Obligatorio
                 }
             }
         }
-
-
-
-        public static void MostrarMenu()
-        {
-
-        }
         
-        public static void CantidadClientes(ref int cantidadclientes)
+        public static void CantidadClientes(ref String[] apostadores)
         {
-            //Pasa el entero de cantidad de clientes por referencia. Si fue cargado previamente, advierte al ususario que se ha eliminado. Tal vez agregar una pregunta para esto?
-
+            //Lee y modifica la referencia del vector de strings. Si fue cargado previamente, advierte al ususario que se ha eliminado. Tal vez agregar una pregunta para esto?
+            int cantidadclientes = 0;
             Console.Clear();
 
-            if (cantidadclientes != 0)
+            if (apostadores.Length != 0)
             {
                 Console.WriteLine("Los valores de apuestas han sido eliminados");
             }
@@ -92,6 +93,7 @@ namespace Primer_Obligatorio
 
             }
 
+            Array.Resize<String>(ref apostadores, cantidadclientes);
 
         }
 
