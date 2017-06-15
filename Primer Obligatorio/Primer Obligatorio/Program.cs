@@ -20,10 +20,11 @@ namespace Primer_Obligatorio
                 Console.WriteLine("   2 - Ingresar apuesta");
                 Console.WriteLine("   3 - Ingresar apuesta sorpresa");
                 Console.WriteLine("   4 - Eliminar apuesta");
-                Console.WriteLine("   5 - Listados \n");
-                Console.WriteLine("   6 - Salir");
+                Console.WriteLine("   5 - Listados");
+                Console.WriteLine("   6 - Salir\n");
                 Console.WriteLine("******************************************");
                 Console.Write("Ingrese la opción deseada: ");
+                
                 esnumero = Int32.TryParse(Console.ReadLine(), out opcion);
 
                 if (!esnumero)
@@ -37,6 +38,7 @@ namespace Primer_Obligatorio
                     case 1:
                         CantidadClientes(ref cantidadclientes);
                         String[] apostadores = new String[cantidadclientes];
+                        MostrarMenu();
                         break;
                     case 2:
                         //Apuesta();
@@ -50,12 +52,23 @@ namespace Primer_Obligatorio
                     case 5:
                         // Listado();
                         break;
+                    case 6:
+                        //
+                        break;
+                    default:
+                        MostrarMenu();
+                        break;
                 }
             }
         }
 
 
 
+        public static void MostrarMenu()
+        {
+
+        }
+        
         public static void CantidadClientes(ref int cantidadclientes)
         {
             //Pasa el entero de cantidad de clientes por referencia. Si fue cargado previamente, advierte al ususario que se ha eliminado. Tal vez agregar una pregunta para esto?
