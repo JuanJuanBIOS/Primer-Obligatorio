@@ -46,6 +46,7 @@ namespace Primer_Obligatorio
             }
         }
 
+
         public static void MostrarPantalla()
         {
             Console.Clear();
