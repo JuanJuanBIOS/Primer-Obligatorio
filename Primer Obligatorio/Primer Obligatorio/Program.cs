@@ -47,7 +47,6 @@ namespace Primer_Obligatorio
         }
 
 
-<<<<<<< HEAD
         public static void MostrarPantalla()
         {
             Console.Clear();
@@ -64,10 +63,8 @@ namespace Primer_Obligatorio
 
 
         public static void CantidadClientes()
-=======
 
         public static void CantidadClientes(ref int cantidadclientes)
->>>>>>> 36578893efcc1bbeddd3ee41f1a8abe271013886
         {
             //Pasa el entero de cantidad de clientes por referencia. Si fue cargado previamente, advierte al ususario que se ha eliminado. Tal vez agregar una pregunta para esto?
 
