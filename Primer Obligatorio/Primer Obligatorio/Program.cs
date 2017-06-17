@@ -9,14 +9,30 @@ namespace Primer_Obligatorio
     {
         static void Main(string[] args)
         {
-            int opcion = 0;
-            bool esnumero = false;
-            int cantidadclientes = 0;
-            while (!esnumero)
-            {
-                MostrarPantalla();
+            int apostadores = 0;
+            string[] nombres = new string[0];
+            int[,] apuestas = new int[0, 0];
+            MostrarMenu(apostadores, nombres, apuestas);
+        }
 
-                esnumero = Int32.TryParse(Console.ReadLine(), out opcion);
+        public static void MostrarMenu(int apostadores, string[] nombres, int[,] apuestas)
+        {
+            int opcion = 0;
+            bool ejecutando = true;
+            while (ejecutando)
+            {
+                Console.Clear();
+                Console.WriteLine("****************************************** \n");
+                Console.WriteLine("   1 - Ingresar la cantidad de clientes    " + apostadores);
+                Console.WriteLine("   2 - Ingresar apuesta");
+                Console.WriteLine("   3 - Ingresar apuesta sorpresa");
+                Console.WriteLine("   4 - Eliminar apuesta");
+                Console.WriteLine("   5 - Listados");
+                Console.WriteLine("   6 - Salir\n");
+                Console.WriteLine("******************************************");
+                Console.Write("Ingrese la opción deseada: ");
+
+                bool esnumero = Int32.TryParse(Console.ReadLine(), out opcion);
 
                 if (!esnumero)
                 {
@@ -27,8 +43,7 @@ namespace Primer_Obligatorio
                 switch (opcion)
                 {
                     case 1:
-                        CantidadClientes(ref cantidadclientes);
-                        String[] apostadores = new String[cantidadclientes];
+                        apostadores = CantidadClientes(apostadores, nombres, apuestas);
                         break;
                     case 2:
                         //Apuesta();
@@ -42,55 +57,49 @@ namespace Primer_Obligatorio
                     case 5:
                         // Listado();
                         break;
+                    case 6:
+                        ejecutando = false;
+                        break;
+                    default:
+                        MostrarMenu(apostadores, nombres, apuestas);
+                        break;
                 }
             }
         }
 
 
-        public static void MostrarPantalla()
+        public static int CantidadClientes(int apostadores, string[] nombres, int[,] apuestas)
         {
             Console.Clear();
-            Console.WriteLine("****************************************** \n");
-            Console.WriteLine("   1 - Ingresar la cantidad de clientes");
-            Console.WriteLine("   2 - Ingresar apuesta");
-            Console.WriteLine("   3 - Ingresar apuesta sorpresa");
-            Console.WriteLine("   4 - Eliminar apuesta");
-            Console.WriteLine("   5 - Listados");
-            Console.WriteLine("   6 - Salir\n");
-            Console.WriteLine("******************************************");
-            Console.Write("Ingrese la opción deseada: ");
+
+            if (apostadores != 0)
+            {
+                Console.Write("La cantidad de apostadores ya fue ingresada. \n¿Desea borrar las apuestas ya ingresadas e ingresar un nuevo número de apostadores? (S/N): ");
+                string respuesta = Console.ReadLine();
+                if (respuesta == "S")
+                {
+                    Console.Write("Ingrese la cantidad de apostadores: ");
+                    apostadores = Convert.ToInt32(Console.ReadLine());
+                    nombres = new string[apostadores];
+                    apuestas = new int[apostadores, 5];
+                    return apostadores;
+                }
+                else
+                {
+                    return apostadores;
+                }
+            }
+            else
+            {
+                Console.Write("Ingrese la cantidad de apostadores: ");
+                apostadores = Convert.ToInt32(Console.ReadLine());
+                nombres = new string[apostadores];
+                apuestas = new int[apostadores, 5];
+                return apostadores;
+            }
         }
 
 
-        public static void CantidadClientes()
-
-        public static void CantidadClientes(ref int cantidadclientes)
-        {
-            //Pasa el entero de cantidad de clientes por referencia. Si fue cargado previamente, advierte al ususario que se ha eliminado. Tal vez agregar una pregunta para esto?
-
-            Console.Clear();
-
-            if (cantidadclientes != 0)
-            {
-                Console.WriteLine("Los valores de apuestas han sido eliminados");
-            }
-
-            Console.WriteLine("Ingrese la cantidad de apuestas");
-            bool esnumero = Int32.TryParse(Console.ReadLine(), out cantidadclientes);
-            Console.WriteLine("Se ingresaran {0} apuestas. \nPresione una tecla para continuar", cantidadclientes);
-            Console.ReadLine();
-
-            if (!esnumero)
-            {
-                Console.Write("La opción ingresada no es válida.");
-                Console.ReadLine();
-
-            }
-
-
-        }
-
-        
 
         public static void Apuesta()
         {
@@ -113,5 +122,7 @@ namespace Primer_Obligatorio
         {
         }
         */
+
+        
     }
 }
