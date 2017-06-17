@@ -3,3 +3,8 @@ C:\Users\jmet\OneDrive\Documentos\POO\JP\Primer-Obligatorio\Primer Obligatorio\P
 C:\Users\jmet\OneDrive\Documentos\POO\JP\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\obj\x86\Debug\Primer Obligatorio.exe
 C:\Users\jmet\OneDrive\Documentos\POO\JP\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\obj\x86\Debug\Primer Obligatorio.pdb
 C:\Users\jmet\OneDrive\Documentos\POO\JP\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\obj\x86\Debug\Primer Obligatorio.csprojResolveAssemblyReference.cache
+C:\Users\Juan\Google Drive\BIOS\2017\POO\Obligatorios\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\obj\x86\Debug\Primer Obligatorio.exe
+C:\Users\Juan\Google Drive\BIOS\2017\POO\Obligatorios\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\obj\x86\Debug\Primer Obligatorio.pdb
+C:\Users\Juan\Google Drive\BIOS\2017\POO\Obligatorios\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\bin\Debug\Primer Obligatorio.exe
+C:\Users\Juan\Google Drive\BIOS\2017\POO\Obligatorios\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\bin\Debug\Primer Obligatorio.pdb
+C:\Users\Juan\Google Drive\BIOS\2017\POO\Obligatorios\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\obj\x86\Debug\Primer Obligatorio.csprojResolveAssemblyReference.cache
