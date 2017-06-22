@@ -35,10 +35,10 @@ namespace ConsoleApplication1
                         Apuesta(ref ultimoapostado, ref nombres, ref apuestas);
                         break;
                     case 3:
-                        ApuestaSorpresa(ref ultimoapostado, ref nombres, ref apuestas);
+                        ApuestaSorpresa(ref nombres, ref apuestas);
                         break;
                     case 4:
-                        //EliminaApuesta();
+                        EliminaApuesta(ref nombres, ref apuestas);
                         break;
                     case 5:
                         Listado(ref nombres, ref apuestas);
@@ -134,32 +134,66 @@ namespace ConsoleApplication1
         }
 
 
-        public static void ApuestaSorpresa(ref int ultimoapostado, ref string[] nombres, ref int[,] apuestas)
+        public static void ApuestaSorpresa(ref string[] nombres, ref int[,] apuestas)
         {
             Console.Clear();
             Console.WriteLine("Ingrese el nombre del apostador");
 
             //falta validar si el nombre no esta escrito en otro campo y que sea tengo tope por cantidad de apuestas
 
-            nombres[ultimoapostado] = Console.ReadLine();
+            nombres[PosicionLibre(nombres)] = Console.ReadLine();
 
             for (int i = 0; i < 5; i++)
             {
                 Random variable = new Random();
-                apuestas[ultimoapostado, i] = variable.Next(1, 49);
+                apuestas[PosicionLibre(nombres), i] = variable.Next(1, 49);
                 System.Threading.Thread.Sleep(10);
             }
-
-            ultimoapostado++;
 
             Console.WriteLine("Apuesta ingresada con exito");
             Console.ReadKey();
         }
 
-        public static void EliminaApuesta()
+        public static void EliminaApuesta(ref string[] nombres, ref int[,] apuestas)
         {
-        }
+            Console.Clear();
+            Console.WriteLine("Ingrese el nombre del apostador a borrar");
+            string nombrebuscado = Console.ReadLine();
+            //falta validar si el nombre no está
 
+            bool buscando = true;
+            int i = 0;
+            while (buscando)
+            {
+                if (nombres[i] == nombrebuscado)
+                {
+                    buscando = false;
+                    nombres[i]="";
+                    for (int j = 0; j < apuestas.GetLength(1); j++)
+                    {
+                        apuestas[i, j]=0;
+                    }
+                    Console.WriteLine("Las apuestas de {0} han sido eliminadas", nombres[i]);
+                }
+                else
+                {
+                    if (i == nombres.Length)
+                    {
+                        buscando = false;
+                        Console.WriteLine("No se ha encontrado el apostado ingresado");
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+
+            }
+            Console.ReadKey();
+
+
+
+        }
 
 
 
@@ -252,7 +286,12 @@ namespace ConsoleApplication1
             Console.Clear();
             for (int k = 0; k < nombres.Length; k++)
             {
-                Console.WriteLine(nombres[k], ":\t");
+                try
+                {
+                    Console.WriteLine(nombres[k], ":\t");
+                }
+                catch { };
+
                 for (int j = 0; j < apuestas.GetLength(1); j++)
                 {
                     Console.Write("\t " + apuestas[k, j]);
@@ -269,7 +308,7 @@ namespace ConsoleApplication1
             int i = 0;
             while (!encontrado && i < nombres.Length)
             {   
-                if (nombres[i] == "")
+                if (nombres[i] == null || nombres[1]=="")
                 {
                     encontrado = true;
                 }
