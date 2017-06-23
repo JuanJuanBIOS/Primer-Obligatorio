@@ -12,7 +12,8 @@ namespace ConsoleApplication1
             int apostadores = 0;
             string[] nombres = new string[0];
             int[,] apuestas = new int[0, 0];
-            int ultimoapostado = 0;
+            //int ultimoapostado = 0;
+            int posicionlibre = 0;
             int opcion = 0;
             bool ejecutando = true;
             while (ejecutando)
@@ -29,19 +30,19 @@ namespace ConsoleApplication1
                 switch (opcion)
                 {
                     case 1:
-                        apostadores = CantidadClientes(ref apostadores, ref nombres, ref apuestas, ref ultimoapostado);
+                        apostadores = CantidadClientes(ref apostadores, ref nombres, ref apuestas);
                         break;
                     case 2:
-                        Apuesta(ref ultimoapostado, ref nombres, ref apuestas);
+                        Apuesta(ref posicionlibre, ref nombres, ref apuestas);
                         break;
                     case 3:
-                        ApuestaSorpresa(ref ultimoapostado, ref nombres, ref apuestas);
+                        ApuestaSorpresa(ref posicionlibre, ref nombres, ref apuestas);
                         break;
                     case 4:
-                        //EliminaApuesta();
+                        EliminaApuesta(ref nombres, ref apuestas);
                         break;
                     case 5:
-                        Listado(ref nombres, ref apuestas);
+                        Listado(ref nombres, ref apuestas, ref posicionlibre);
                         break;
                     case 6:
                         ejecutando = false;
@@ -70,7 +71,7 @@ namespace ConsoleApplication1
             Console.Write("Ingrese la opción deseada: ");
         }
 
-        public static int CantidadClientes(ref int apostadores, ref string[] nombres, ref int[,] apuestas, ref int ultimoapostado)
+        public static int CantidadClientes(ref int apostadores, ref string[] nombres, ref int[,] apuestas)
         {
             Console.Clear();
 
@@ -84,7 +85,7 @@ namespace ConsoleApplication1
                     apostadores = Convert.ToInt32(Console.ReadLine());
                     nombres = new string[apostadores];
                     apuestas = new int[apostadores, 5];
-                    ultimoapostado = 0;
+                    //ultimoapostado = 0;
                     return apostadores;
                 }
                 else
@@ -104,67 +105,129 @@ namespace ConsoleApplication1
 
 
 
-        public static void Apuesta(ref int ultimoapostado, ref string[] nombres, ref int[,] apuestas)
+        public static void Apuesta(ref int posicionlibre, ref string[] nombres, ref int[,] apuestas)
         {
             Console.Clear();
+
+            posicionlibre = PosicionLibre(nombres);
+
+            if (posicionlibre == nombres.Length)
+            {
+                Console.WriteLine("Ya se ha alcanzado el número máximo de apostadores");
+                Console.ReadLine();
+            }
+
+            else
+            {
+                bool ejecutando = true;
+                while (ejecutando)
+                {
+                    //bool nombrerepetido = false;
+                    Console.Write("Ingrese el nombre del apostador: ");
+                    string nombre = Console.ReadLine();
+
+                    if (nombrerepetido(nombres, nombre) == true)
+                    {
+                        Console.WriteLine("El nombre ingresado ya existe en el listado de apostadores.\n");
+                    }
+
+                    else
+                    {
+                        nombres[posicionlibre] = nombre;
+                        for (int i = 0; i < 5; i++)
+                        {
+                            bool esnumero = false;
+                            while (!esnumero)
+                            {
+                                Console.Write("\nIngrese el {0}º valor de la apuesta: ", i + 1);
+                                esnumero = Int32.TryParse(Console.ReadLine(), out apuestas[posicionlibre, i]);
+                                if (!esnumero)
+                                {
+                                    Console.WriteLine("\nLa opción ingresada no es válida.");
+                                }
+                                else if (apuestas[posicionlibre, i] < 1 || apuestas[posicionlibre, i] > 49)
+                                {
+                                    Console.WriteLine("\nLa opción ingresada no es válida.");
+                                    i--;
+                                }
+                            }
+                        }
+                        //ultimoapostado++;
+                        ejecutando = false;
+                    }
+                }
+            }
+        }
+
+
+        public static void ApuestaSorpresa(ref int posicionlibre, ref string[] nombres, ref int[,] apuestas)
+        {
+            Console.Clear();
+
+            posicionlibre = PosicionLibre(nombres);
+
             Console.Write("Ingrese el nombre del apostador: ");
 
             //falta validar si el nombre no esta escrito en otro campo y que sea tengo tope por cantidad de apuestas
 
-            nombres[ultimoapostado] = Console.ReadLine();
-            for (int i = 0; i < 5; i++)
-            {
-                bool esnumero = false;
-                while (!esnumero)
-                {
-                    Console.Write("\nIngrese el {0}º valor de la apuesta: ", i + 1);
-                    esnumero = Int32.TryParse(Console.ReadLine(), out apuestas[ultimoapostado, i]);
-                    if (!esnumero)
-                    {
-                        Console.WriteLine("\nLa opción ingresada no es válida.");
-                    }
-                    else if (apuestas[ultimoapostado, i] < 1 || apuestas[ultimoapostado, i] > 49)
-                    {
-                        Console.WriteLine("\nLa opción ingresada no es válida.");
-                        i--;
-                    }
-                }
-            }
-            ultimoapostado++;
-        }
-
-
-        public static void ApuestaSorpresa(ref int ultimoapostado, ref string[] nombres, ref int[,] apuestas)
-        {
-            Console.Clear();
-            Console.WriteLine("Ingrese el nombre del apostador");
-
-            //falta validar si el nombre no esta escrito en otro campo y que sea tengo tope por cantidad de apuestas
-
-            nombres[ultimoapostado] = Console.ReadLine();
+            nombres[posicionlibre] = Console.ReadLine();
 
             for (int i = 0; i < 5; i++)
             {
                 Random variable = new Random();
-                apuestas[ultimoapostado, i] = variable.Next(1, 49);
+                apuestas[posicionlibre, i] = variable.Next(1, 49);
                 System.Threading.Thread.Sleep(10);
             }
 
-            ultimoapostado++;
+            //ultimoapostado++;
 
-            Console.WriteLine("Apuesta ingresada con exito");
+            Console.WriteLine("Apuesta ingresada con éxito");
             Console.ReadKey();
         }
 
-        public static void EliminaApuesta()
+        public static void EliminaApuesta(ref string[] nombres, ref int[,] apuestas)
         {
+            Console.Clear();
+            Console.WriteLine("Ingrese el nombre del apostador cuya apuesa desea borrar: ");
+
+            string nombreborrar = Console.ReadLine();
+
+            int posicion = 0;
+            int i = 0;
+            bool encontrado = false;
+            while (!encontrado && i < nombres.Length)
+            {
+                if (nombreborrar == nombres[i])
+                {
+                    posicion = i;
+                    encontrado = true;
+
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            if (!encontrado)
+            {
+                Console.WriteLine("El nombre ingresado no se encuentra en el listado");
+                Console.ReadLine();
+            }
+            else
+            {
+
+
+
+
+
         }
 
 
 
 
 
-        public static void Listado(ref string[] nombres, ref int[,] apuestas)
+        public static void Listado(ref string[] nombres, ref int[,] apuestas, ref int posicionlibre)
         {
             Console.Clear();
             Console.WriteLine("******************************************");
@@ -241,9 +304,6 @@ namespace ConsoleApplication1
 
             }
             Console.ReadKey();
-
-
-
         }
 
 
@@ -252,12 +312,16 @@ namespace ConsoleApplication1
             Console.Clear();
             for (int k = 0; k < nombres.Length; k++)
             {
-                Console.WriteLine(nombres[k], ":\t");
-                for (int j = 0; j < apuestas.GetLength(1); j++)
-                {
-                    Console.Write("\t " + apuestas[k, j]);
+                if ((nombres[k] != null) && (nombres[k] != ""))
+                {   
+                        Console.WriteLine(nombres[k], ":\t");
+
+                        for (int j = 0; j < apuestas.GetLength(1); j++)
+                        {
+                            Console.Write("\t " + apuestas[k, j]);
+                        }
+                        Console.WriteLine();
                 }
-                Console.WriteLine();
             }
             Console.ReadLine();
         }
@@ -268,8 +332,8 @@ namespace ConsoleApplication1
             bool encontrado = false;
             int i = 0;
             while (!encontrado && i < nombres.Length)
-            {   
-                if (nombres[i] == "")
+            {
+                if (nombres[i] == "" || nombres[i] == null)
                 {
                     encontrado = true;
                 }
@@ -280,6 +344,25 @@ namespace ConsoleApplication1
             }
             posicionlibre = i;
             return posicionlibre;
+        }
+
+        public static bool nombrerepetido(string[] nombres, string nombre)
+        {
+            bool resultado = false;
+            int i = 0;
+
+            while (!resultado && i<nombres.Length)
+            {
+                if (nombre == nombres[i])
+                {
+                    resultado = true;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            return resultado;
         }
     }
 }
