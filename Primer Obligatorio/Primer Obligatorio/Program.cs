@@ -14,7 +14,7 @@ namespace ConsoleApplication1
             string[] nombres = new string[0];
             int[,] apuestas = new int[0, 0];
             int ultimolibre = 0;
-            
+
             // Creación de un loop para que se siga ejecutando el menú principal en caso de ingresar una opción no válida
             bool ejecutando = true;
             while (ejecutando)
@@ -65,17 +65,17 @@ namespace ConsoleApplication1
         public static void MostrarMenu()
         {
             Console.Clear();
-            Console.WriteLine("******************************************");
-            Console.WriteLine("               5 de Oro");
-            Console.WriteLine("\n            733555555533352535555347             \n            7455555557575757575757553             \n            6877777777777777777777775             \n            8377777723253294449422243             \n            277777778866688888886689              \n            27777777                              \n            87 77777                              \n           58  77 77                              \n           68     77  7777777777                  \n           95                   777               \n           57                      7              \n                    7206695         7             \n            7  77728695346865        7            \n           4888883          777       7           \n                             77       7           \n                              7       7           \n                               7 7 7  7           \n         777777777            377777777           \n         577777777           7777777777           \n         75777777777         777777777            \n          757777777777777777777777775             \n           5577777777777577777777725              \n            74427777777777777775407               \n              3888935777552468867                 \n                 7368888888827      ");
-            Console.WriteLine("\n****************************************** \n");
+            Console.WriteLine("*********************************************");
+            Console.WriteLine("                 5 de Oro");
+            //Console.WriteLine("\n            733555555533352535555347             \n            7455555557575757575757553             \n            6877777777777777777777775             \n            8377777723253294449422243             \n            277777778866688888886689              \n            27777777                              \n            87 77777                              \n           58  77 77                              \n           68     77  7777777777                  \n           95                   777               \n           57                      7              \n                    7206695         7             \n            7  77728695346865        7            \n           4888883          777       7           \n                             77       7           \n                              7       7           \n                               7 7 7  7           \n         777777777            377777777           \n         577777777           7777777777           \n         75777777777         777777777            \n          757777777777777777777777775             \n           5577777777777577777777725              \n            74427777777777777775407               \n              3888935777552468867                 \n                 7368888888827      ");
+            Console.WriteLine("\n********************************************* \n");
             Console.WriteLine("   1 - Ingresar la cantidad de apostadores    ");
             Console.WriteLine("   2 - Ingresar apuesta");
             Console.WriteLine("   3 - Ingresar apuesta sorpresa");
             Console.WriteLine("   4 - Eliminar apuesta");
             Console.WriteLine("   5 - Listados");
             Console.WriteLine("   6 - Salir\n");
-            Console.WriteLine("******************************************");
+            Console.WriteLine("*********************************************");
             Console.Write("Ingrese la opción deseada: ");
         }
 
@@ -90,18 +90,19 @@ namespace ConsoleApplication1
             //Se verifica si la cantidad de apostadores ya fue ingresada previamente
             if (apostadores > 0)
             {
+                // Si la cantidad de apostadores ya había sido ingresada se pregunta si se quiere ingresar de nuevo
                 Console.WriteLine("La cantidad de apostadores ya fue ingresada. \n");
                 Console.WriteLine("Si desea borrar las apuestas ya ingresadas e ingresar un nuevo número de apostadores presione 'S'.");
-                    Console.Write("De lo contrario, presione cualquier tecla para volver al menú principal: ");
-                    string respuesta = Console.ReadLine();
-                    if (respuesta == "S" || respuesta == "s")
-                    {
-                        // Ingreso del número de apostadores en caso de que ya haya sido ingresado nuevamente pero se quieran borrar los datos e
-                        // ingresar un nuevo número de apostadores
-                        Console.WriteLine();
-                        NumeroApostadores(ref apostadores, ref nombres, ref apuestas, ref ultimolibre);
-                        //ejecutando = false;
-                    }
+                Console.Write("De lo contrario, presione cualquier tecla para volver al menú principal: ");
+                string respuesta = Console.ReadLine();
+                if (respuesta == "S" || respuesta == "s")
+                {
+                    // Ingreso del número de apostadores en caso de que ya haya sido ingresado nuevamente pero se quieran borrar los datos e
+                    // ingresar un nuevo número de apostadores
+                    Console.WriteLine();
+                    NumeroApostadores(ref apostadores, ref nombres, ref apuestas, ref ultimolibre);
+                    //ejecutando = false;
+                }
             }
             // Ingreso del número de apostadores en caso de que no haya sido ingresado previamente
             else
@@ -129,6 +130,7 @@ namespace ConsoleApplication1
                 }
                 else
                 {
+                    // Si el valor ingresado es válido se definen las dimensiones del vector nombres y la matriz apuestas
                     nombres = new string[apostadores];
                     apuestas = new int[apostadores, 5];
                     ultimolibre = 0;
@@ -167,6 +169,7 @@ namespace ConsoleApplication1
                 // Se verifica si el nombre ingresado ya se encuentra en la lista de apostadores
                 if (nombrerepetido(nombres, nombre) == true)
                 {
+                    // Si el nombre ya se encuentra en la lista se pregunta si se quiere ingresar otro nombre
                     Console.WriteLine("\nEl nombre ingresado ya existe en el listado de apostadores.");
                     Console.Write("\nPresione 'R' para volver al menú principal o cualquier tecla para ingresar un nuevo nombre de apostador: ");
                     string respuesta = Console.ReadLine();
@@ -175,6 +178,7 @@ namespace ConsoleApplication1
                         Apuesta(apostadores, ref nombres, ref apuestas, ref ultimolibre);
                     }
                 }
+                //Se verifica que no se haya ingresado un nombre vacío
                 else if (nombre == "")
                 {
                     Console.WriteLine("\nNo ha ingresado el nombre del apostador.");
@@ -207,6 +211,7 @@ namespace ConsoleApplication1
                             {
                                 Console.WriteLine("\nEl valor ingresado no es válido.");
                             }
+                            //Se verifica que no se esté ingresando un número repetido
                             else if (numerorepetido(apuestas, ultimolibre, apuestas[ultimolibre, i], i))
                             {
                                 Console.WriteLine("\nNo puede ingresar dos veces el mismo número en la misma apuesta.");
@@ -254,6 +259,7 @@ namespace ConsoleApplication1
                 // Se verifica si el nombre ingresado ya se encuentra en la lista de apostadores
                 if (nombrerepetido(nombres, nombre) == true)
                 {
+                    // Si el nombre ya se encuentra en la lista se pregunta si se quiere ingresar otro nombre
                     Console.WriteLine("\nEl nombre ingresado ya existe en el listado de apostadores.");
                     Console.Write("Presione 'R' para volver al menú principal o cualquier tecla para ingresar un nuevo nombre de apostador: ");
                     string respuesta = Console.ReadLine();
@@ -262,7 +268,8 @@ namespace ConsoleApplication1
                         ApuestaSorpresa(apostadores, ref nombres, ref apuestas, ref ultimolibre);
                     }
                 }
-
+                
+                //Se verifica que no se haya ingresado un nombre vacío
                 else if (nombre == "")
                 {
                     Console.WriteLine("\nNo ha ingresado el nombre del apostador.");
@@ -270,7 +277,7 @@ namespace ConsoleApplication1
                     string respuesta = Console.ReadLine();
                     if (respuesta != "R" && respuesta != "r")
                     {
-                        Apuesta(apostadores, ref nombres, ref apuestas, ref ultimolibre);
+                        ApuestaSorpresa(apostadores, ref nombres, ref apuestas, ref ultimolibre);
                     }
                 }
 
@@ -317,7 +324,7 @@ namespace ConsoleApplication1
         }
 
         //Método para eliminar una apuesta ingresada
-        public static void EliminaApuesta(ref string[] nombres, ref int[,] apuestas,ref int ultimolibre)
+        public static void EliminaApuesta(ref string[] nombres, ref int[,] apuestas, ref int ultimolibre)
         {
             Console.Clear();
             Console.WriteLine("\n******************************************");
@@ -348,7 +355,7 @@ namespace ConsoleApplication1
 
                 if (respuesta != "R" && respuesta != "r")
                 {
-                    EliminaApuesta(ref nombres, ref apuestas,ref ultimolibre);
+                    EliminaApuesta(ref nombres, ref apuestas, ref ultimolibre);
                 }
             }
             // Si se encuentra el nombre en el listado de apostadores, se sobreescribe la apuesta con la última apuesta ingresada
@@ -356,7 +363,7 @@ namespace ConsoleApplication1
             else
             {
                 nombres[posicion] = nombres[ultimolibre - 1];
-                nombres[ultimolibre - 1]= string.Empty;
+                nombres[ultimolibre - 1] = "";
                 for (int j = 0; j < apuestas.GetLength(1); j++)
                 {
                     apuestas[posicion, j] = apuestas[ultimolibre - 1, j];
@@ -371,12 +378,12 @@ namespace ConsoleApplication1
             }
         }
 
-
+        // Método para mostrar el menú de listados posibles
         public static void Listado(ref string[] nombres, ref int[,] apuestas, ref int ultimolibre)
         {
             Console.Clear();
             Console.WriteLine("******************************************");
-            Console.WriteLine("            Listados");
+            Console.WriteLine("               Listados");
             Console.WriteLine("****************************************** \n");
             Console.WriteLine("   1 - Numeros de un apostador");
             Console.WriteLine("   2 - Listado completo de apuestas");
@@ -386,89 +393,146 @@ namespace ConsoleApplication1
             Console.Write("Ingrese la opción deseada: ");
 
             int opcion = 0;
+            //Se pide el número de opción del menú principal
             bool esnumero = Int32.TryParse(Console.ReadLine(), out opcion);
 
+            //Verificación de que la opción ingresada es válida
             if (!esnumero)
             {
                 Console.Write("La opción ingresada no es válida.");
                 Console.ReadLine();
             }
-
+            // Ejecución de métodos dependiendo de la opción ingresada
             switch (opcion)
             {
                 case 1:
-                    NumerosDeApostador(ref nombres, ref apuestas);
+                    NumerosDeApostador(nombres, apuestas, ultimolibre);
                     break;
                 case 2:
-                    ListadoCompletoApuestas(ref nombres, ref apuestas);
+                    ListadoCompletoApuestas(nombres, apuestas);
                     break;
                 case 3:
-                    // NumerosSinApuestas();
+                    NumerosSinApuestas(nombres, apuestas);
                     break;
                 case 4:
-                    //;
                     break;
                 default:
-                    //;
+                    Listado(ref nombres, ref apuestas, ref ultimolibre);
                     break;
             }
         }
 
-        public static void NumerosDeApostador(ref string[] nombres, ref int[,] apuestas)
+        //Método para listar los números de un apostador
+        public static void NumerosDeApostador(string[] nombres, int[,] apuestas, int ultimolibre)
         {
             Console.Clear();
-            Console.WriteLine("Ingrese el nombre del apostador");
-            string nombrebuscado = Console.ReadLine();
-            //falta validar si el nombre no está
+            Console.WriteLine("\n******************************************");
+            Console.WriteLine("         Números de un apostador");
+            Console.WriteLine("****************************************** \n");
 
-            bool buscando = true;
-            int i = 0;
-            while (buscando)
+            //Se pide el nombre del apostador cuya apuesta se desea borrar
+            Console.Write("Ingrese el nombre del apostador cuya apuesa desea ver: ");
+
+            string nombre = Console.ReadLine();
+
+            //Se busca el nombre en el listado de apostadores
+            int posicion = -1;
+            for (int i = 0; i < ultimolibre; i++)
             {
-                if (nombres[i] == nombrebuscado)
+                if (nombre == nombres[i])
                 {
-                    buscando = false;
-                    Console.WriteLine("Las apuestas de {0} son:", nombres[i]);
-                    for (int j = 0; j < apuestas.GetLength(1); j++)
-                    {
-                        Console.Write("{0},", apuestas[i, j]);
-                    }
+                    posicion = i;
                 }
-                else
+            }
+
+            //Si no se encuentra el nombre en el listado de apostadores, se pregunta si se quiere buscar otro nombre.
+            if (posicion == -1)
+            {
+                Console.WriteLine("\nEl nombre ingresado no se encuentra en la lista de apostadores.\n");
+                Console.Write("Presione 'R' para volver al menú principal o cualquier tecla para buscar un nuevo nombre de apostador: ");
+                string respuesta = Console.ReadLine();
+
+                if (respuesta != "R" && respuesta != "r")
                 {
-                    if (i == nombres.Length)
-                    {
-                        buscando = false;
-                        Console.WriteLine("No se ha encontrado el apostador ingresado.");
-                    }
-                    else
-                    {
-                        i++;
-                    }
+                    NumerosDeApostador(nombres, apuestas, ultimolibre);
+                }
+            }
+            // Si se encuentra el nombre en el listado de apostadores, se muestra la apuesta
+            else
+            {
+                Console.WriteLine("\nLas apuestas de {0} son: ", nombre);
+                for (int j = 0; j < apuestas.GetLength(1); j++)
+                {
+                    Console.Write("\t{0}", apuestas[posicion, j]);
                 }
 
+                Console.ReadKey();
             }
-            Console.ReadKey();
         }
 
-
-        public static void ListadoCompletoApuestas(ref string[] nombres, ref int[,] apuestas)
+        //Método para mostrar el listado completo de apuestas
+        public static void ListadoCompletoApuestas(string[] nombres, int[,] apuestas)
         {
             Console.Clear();
+            Console.WriteLine("\n******************************************");
+            Console.WriteLine("            Listado completo de apuestas");
+            Console.WriteLine("****************************************** \n");
+            
             for (int k = 0; k < nombres.Length; k++)
             {
                 if ((nombres[k] != null) && (nombres[k] != ""))
-                {   
-                        Console.WriteLine(nombres[k], ":\t");
+                {
+                    Console.WriteLine(nombres[k], ":\t");
 
-                        for (int j = 0; j < apuestas.GetLength(1); j++)
-                        {
-                            Console.Write("\t " + apuestas[k, j]);
-                        }
-                        Console.WriteLine();
+                    for (int j = 0; j < apuestas.GetLength(1); j++)
+                    {
+                        Console.Write("\t " + apuestas[k, j]);
+                    }
+                    Console.WriteLine();
                 }
             }
             Console.ReadLine();
+        }
+
+        //Método para mostrar los números que no fueron apostados
+        public static void NumerosSinApuestas(string[] nombres, int[,] apuestas)
+        {
+            Console.Clear();
+            Console.WriteLine("\n******************************************");
+            Console.WriteLine("      Números que no fueron apostados");
+            Console.WriteLine("****************************************** \n");
+
+            for (int i = 1; i < 49; i++)
+            {
+                if(!BuscarNumero(nombres, apuestas, i))
+                {
+                    Console.Write("\t{0}", i);
+                }
+            }
+            Console.ReadLine();
+        }
+        
+        //Método para buscar si un número fue apostado
+        public static bool BuscarNumero(string[] nombres, int[,] apuestas, int i)
+        {
+            bool encontrado = false;
+            bool buscando = true;
+            while (buscando)
+            {
+                for (int j = 0; j < nombres.Length; j++)
+                {
+                    for (int k = 0; k < apuestas.GetLength(1); k++)
+                    {
+                        if (i == apuestas[j, k])
+                        {
+                            encontrado = true;
+                            buscando = false;
+                        }
+                    }
+                }
+                buscando = false;
+            }
+            return encontrado;
         }
 
 
@@ -478,7 +542,7 @@ namespace ConsoleApplication1
             bool resultado = false;
             int i = 0;
             // Se busca en toda la lista de apostadores si el nombre ya existe
-            while (!resultado && i<nombres.Length)
+            while (!resultado && i < nombres.Length)
             {
                 if (nombre == nombres[i])
                 {
@@ -494,14 +558,14 @@ namespace ConsoleApplication1
 
 
         //Método para verificar si se está ingresando una apuesta con números repetidos
-        public static bool numerorepetido(int[,] apuestas,int ultimolibre, int numeroapostado, int posicion)
+        public static bool numerorepetido(int[,] apuestas, int ultimolibre, int numeroapostado, int posicion)
         {
             bool resultado = false;
             int i = 0;
             // Se busca en los números ya ingresados para ese apostador
             while (!resultado && i < posicion)
             {
-                if (numeroapostado == apuestas[ultimolibre,i])
+                if (numeroapostado == apuestas[ultimolibre, i])
                 {
                     resultado = true;
                 }
