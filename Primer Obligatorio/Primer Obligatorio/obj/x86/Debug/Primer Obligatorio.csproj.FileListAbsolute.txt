@@ -13,3 +13,8 @@ C:\Users\jmet\OneDrive\Documentos\POO\Primer-Obligatorio\Primer Obligatorio\Prim
 C:\Users\jmet\OneDrive\Documentos\POO\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\obj\x86\Debug\Primer Obligatorio.csprojResolveAssemblyReference.cache
 C:\Users\jmet\OneDrive\Documentos\POO\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\bin\Debug\Primer Obligatorio.exe
 C:\Users\jmet\OneDrive\Documentos\POO\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\bin\Debug\Primer Obligatorio.pdb
+C:\Users\jmet\OneDrive\Documentos\POO\JP\Obligatorio\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\obj\x86\Debug\Primer Obligatorio.exe
+C:\Users\jmet\OneDrive\Documentos\POO\JP\Obligatorio\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\obj\x86\Debug\Primer Obligatorio.pdb
+C:\Users\jmet\OneDrive\Documentos\POO\JP\Obligatorio\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\bin\Debug\Primer Obligatorio.exe
+C:\Users\jmet\OneDrive\Documentos\POO\JP\Obligatorio\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\bin\Debug\Primer Obligatorio.pdb
+C:\Users\jmet\OneDrive\Documentos\POO\JP\Obligatorio\Primer-Obligatorio\Primer Obligatorio\Primer Obligatorio\obj\x86\Debug\Primer Obligatorio.csprojResolveAssemblyReference.cache
